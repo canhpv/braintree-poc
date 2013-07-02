@@ -1,0 +1,56 @@
+
+
+<script >
+    $( document ).ready(function() {
+
+        var planPrice = $( "#planPrice").text();
+
+        $("#addons li").each(function() {
+            $(this).find("input").change(function() {
+                var totalPrice = recountAll();
+                $( "#totalPrice").text(totalPrice);
+            });
+        });
+
+    });
+
+
+   function recountAll() {
+        var plan = $( "#planPrice").text();
+        var sumAddons = 0;
+
+        $("#addons li").each(function() {
+            var amount = $(this).find("input").val();
+            var price = $(this).find("label").text();
+            sumAddons += amount*price;
+        });
+
+
+        return (sumAddons + parseFloat(plan)).toFixed(2);
+
+   }
+
+  function sumAddons() {
+        var sumAddons =  0;
+        $("#addons li").each(function() {
+            var amount = $(this).find("input").val();
+            var price = $(this).find("label").text();
+            sumAddons += amount*price;
+        });
+        return sumAddons;
+   }
+
+</script>
+<div style="display: inline-block; border:1px black dotted; margin: 3px; padding: 3px">
+    <input type="radio" checked="checked" value="$planId" name="plan"> $planName<br/><br/>
+        <br/>
+    <div style="float:left;width:75%;"><em>&nbsp;&nbsp;$planDescription</em></div>
+    <div id="planPrice" style="text-align:right;font-weight:bold;">$planPrice</div>
+    <h3>Options</h3>
+    <ul id="addons">
+    $addons
+    </ul>
+    <hr/>
+    <div style="float:left;width:75%;font-weight:bold;"><strong>Total</strong></div>
+    <div id="totalPrice" style="text-align:right;font-weight:bold">$planPrice</div>
+</div>

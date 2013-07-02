@@ -1,0 +1,65 @@
+<html>
+<head>
+
+
+</head>
+<body>
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+<h1>Do you need more user seats ?</h1>
+<p>Subscribe to a premium plan for your <strong>$tenant</strong> workspace for only $3 per month.<br/></p>
+<div>
+    <form action='/buy' method='POST' id="braintree-payment-form">
+        <input type="hidden" name="tenant_name" value="$tenant" />
+        <h2>Choose a Plan and options</h2>
+        $plans
+        <h2>Your billing details</h2>
+        <p>
+            <label>First Name</label>
+            <input type='text' name='first_name' id='first_name'></input>
+        </p>
+        <p>
+            <label for='last_name'>Last Name</label>
+            <input type='text' name='last_name' id='last_name'></input>
+        </p>
+        <p>
+            <label for='organization'>Organization</label>
+            <input type='text' name='organization' id='organization'></input>
+        </p>
+        <p>
+            <label for='phone'>Phone</label>
+            <input type='text' name='phone' id='phone'></input>
+        </p>
+        <p>
+            <label for='email'>Billing Email</label>
+            <input type='text' name='email' id='email'></input>
+        </p>
+        <h2>Your Payment details</h2>
+        <p>
+            <label>Card Number</label>
+            <input type="text" size="20" autocomplete="off" data-encrypted-name="number" />
+        </p>
+        <p>
+            <label>CVV</label>
+            <input type="text" size="4" autocomplete="off" data-encrypted-name="cvv" />
+        </p>
+        <p>
+            <label>Expiration (MM/YYYY)</label>
+            <input type="text" size="2" data-encrypted-name="month" /> / <input type="text" size="4" data-encrypted-name="year" />
+        </p>
+        <p>
+            <img src="https://exo.mybalsamiq.com/projects/exocloud/assets/card.png">
+        </p>
+        <p>
+            By clicking <strong>Subscribe</strong> you agree to the <a href="/terms">terms of service</a>.
+        </p>
+        <input class='submit-button' type='submit' value="Subscribe" />
+    </form>
+</div>
+<script type="text/javascript" src="https://js.braintreegateway.com/v1/braintree.js"></script>
+<script type="text/javascript">
+    var braintree = Braintree.create("MIIBCgKCAQEAr8vDBJCCY0P6zgvw+3bmAoHAuC0hCw62AEBxOrsOlNhIa+ft4j5xFP/Km7s8c5oUEzpFEDihR1lHNDj/BYb548HMq+OFNld/PDJBm1zjJ+VOzvk8gyUOGsDanhZqdUuvRWRQ0Ukc365wsbmp1YHEfRkJr6KM2KWdO4Bbt6GN+MEDx/9ElKcLj1IV3GTDVlyZ1jWcdjCx4z6Fwrfi00SexhlPb62bIGvhNstaZg9GaxQb3B6m7x8sX/1Pr4wIRnqGwnwVaa0QRI9nhvZ1qaSwgp6VQMHkiAvCNMOHl/laysHtU9plt7uhgweYpoYdeJLlWetAue1GMW4WQHEc4N03owIDAQAB");
+    braintree.onSubmitEncryptForm('braintree-payment-form');
+</script>
+</body>
+</html>
